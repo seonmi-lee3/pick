@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>경제토크쇼픽</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="shared locked">
+  <form class="lock" id="lockForm">
+    <h1>경제토크쇼픽</h1>
+    <label class="field">
+      <span class="field-label">비밀번호</span>
+      <input type="password" id="lockInput" autocomplete="current-password" autofocus>
+    </label>
+    <button type="submit" id="lockButton" class="button">열기</button>
+    <p class="lock-message" id="lockMessage" aria-live="polite"></p>
+  </form>
+  <header class="top">
+    <div class="hero">
+    <div class="top-row">
+      <h1>경제토크쇼픽</h1>
+      <p class="total">전체 <strong id="totalCount">0</strong>건</p>
+    </div>
+    <div class="views-bar">
+      <button type="button" id="episodesButton" class="button">새 방송 확인</button>
+      <button type="button" id="viewsButton" class="button">조회수 가져오기</button>
+      <p class="views-status" id="viewsStatus" aria-live="polite">조회수를 아직 가져오지 않았습니다.</p>
+    </div>
+    </div>
+    <p class="episodes-status" id="episodesStatus" aria-live="polite" hidden></p>
+    <div class="stats">
+      <section class="chart wide" id="viewChart" aria-labelledby="viewStatsTitle" hidden>
+        <h2 id="viewStatsTitle">조회수 순위 <span id="viewStatsNote">상위 10개</span></h2>
+        <ol class="bars ranked by-title" id="viewStats"></ol>
+      </section>
+      <section class="chart" aria-labelledby="keywordStatsTitle">
+        <h2 id="keywordStatsTitle">제목 키워드 순위 <span>상위 10개 · 나온 제목 수</span></h2>
+        <div class="pie-wrap">
+          <svg class="pie" id="keywordPie" viewBox="0 0 200 200" role="group" aria-label="제목 키워드 상위 10개의 비중"></svg>
+          <ol class="legend" id="keywordStats"></ol>
+        </div>
+      </section>
+      <section class="chart" aria-labelledby="guestStatsTitle">
+        <h2 id="guestStatsTitle">출연 횟수 <span>두 번 이상 출연한 사람</span></h2>
+        <div class="groups" id="guestStats"></div>
+      </section>
+    </div>
+  </header>
+
+  <section class="controls" aria-label="찾기 조건">
+    <div class="control-row">
+      <label class="field search">
+        <span class="field-label">검색</span>
+        <input type="search" id="searchInput" placeholder="제목, 요약, 출연자, 자막에서 찾기" autocomplete="off">
+      </label>
+      <label class="field">
+        <span class="field-label">분기</span>
+        <select id="kindSelect">
+          <option value="">전체 분기</option>
+        </select>
+      </label>
+      <button type="button" id="resetButton" class="button">초기화</button>
+    </div>
+    <p class="notice" id="transcriptNotice" hidden>자막 검색을 쓸 수 없습니다. 제목, 요약, 출연자에서만 찾습니다.</p>
+    <p class="result-count" aria-live="polite">결과 <strong id="resultCount">0</strong>건<span id="pageInfo"></span></p>
+  </section>
+
+  <main>
+    <p class="message" id="loadError" hidden>자료를 불러오지 못했습니다.</p>
+    <div class="message" id="emptyMessage" hidden>
+      <p>결과가 없습니다.</p>
+      <button type="button" id="emptyResetButton" class="button">초기화</button>
+    </div>
+    <div class="cards" id="cards"></div>
+    <nav class="pager" id="pager" aria-label="결과 쪽 번호" hidden></nav>
+  </main>
+
+  <script src="lock.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
